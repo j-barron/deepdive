@@ -154,7 +154,7 @@ then . else
         export DEEPDIVE_UNLOAD_MATERIALIZED=false
 
         # dump the variables, joining the holdout query to determine the type of each variable
-        deepdive compute \\
+        deepdive compute execute \\
             input_sql=\(
             { SELECT:
                 [ { column: "id" }
@@ -458,7 +458,7 @@ then . else
 
             # dump the factors joining the assigned weight ids, converting into binary format for the inference engine
             DEEPDIVE_CURRENT_PROCESS_NAME=\"${DEEPDIVE_CURRENT_PROCESS_NAME}.factors\" \\
-            deepdive compute \\
+            deepdive compute execute \\
                 input_sql=\(
                     { SELECT:
                         [ { table: "weights", column: "id", alias: "weight_id" }
@@ -492,7 +492,7 @@ then . else
 
             # dump the weights (except the description column), converting into binary format for the inference engine
             DEEPDIVE_CURRENT_PROCESS_NAME=\"${DEEPDIVE_CURRENT_PROCESS_NAME}.weights\" \\
-            deepdive compute \\
+            deepdive compute execute \\
                 input_sql=\(
                     { SELECT:
                         [ { column: "id" }
